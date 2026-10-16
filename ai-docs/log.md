@@ -12,3 +12,5 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 ## [2026-10-16] build | a 429 on one model's quota moves to the next model (PR #2, merged, unreleased)
 everscout's first live run hit the free tier's 20-a-day limit on gemini-3.8-flash and fetchwright stopped although flash-lite had quota. Mark agreed to fall through on a per-model quota 429. Lessons L-004 and L-005 (PR #1). everscout runs this clone through its `fetchwright.cli` config until a 0.2.0 release, which needs Mark's go-ahead.
 ## [2026-10-16] release | fetchwright 0.2.0: the quota fall-through (PR #2), every version field bumped, README budget table refreshed (all green); released on the owner's go-ahead
+## [2026-10-16] update | wiki updated for 0.2.0 (Versions page, the 429 quota fall-through on Commands, How pages are read, Recipes and FAQ, budget output, footer); installed plugin updated to 0.2.0
+## [2026-10-15] index | rebuilt (4 entries)

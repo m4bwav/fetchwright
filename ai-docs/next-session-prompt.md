@@ -1,13 +1,13 @@
-# Next session: fetchwright after 0.1.0 (evals, 0.1.1)
+# Next session: fetchwright after 0.2.0 (evals, 0.2.1)
 
-Written 2026-10-15 (night). Run from `D:\m4bwa\Claude\Projects\Ai`. The repository is `Ai\fetchwright` (public, m4bwav/fetchwright, branch main). everscout is `Ai\everscout`; its main clone holds another session's uncommitted edits, so work there in a worktree off origin/main (`Ai\everscout-wt-urlctx` exists).
+Written 2026-10-15 (night), updated 2026-10-16 after the 0.2.0 release. Run from `D:\m4bwa\Claude\Projects\Ai`. The repository is `Ai\fetchwright` (public, m4bwav/fetchwright, branch main). everscout is `Ai\everscout`; its main clone holds another session's uncommitted edits, so work there in a worktree off origin/main (`Ai\everscout-wt-urlctx` exists).
 
 ## Where things stand
 
-- fetchwright 0.1.0 is released (tag v0.1.0, 2026-10-15) and its wiki is live (ai-docs/notes/2026-10-15-github-wiki.md). It holds two skills (the reader and a setup advisor), the stdlib CLI `skills/fetchwright/scripts/fetchwright.py`, 37 offline tests, a live smoke test, a size budget (all green) and CI.
-- Installed as fetchwright@mark-local 0.1.0 (user scope) from `Ai\.claude-plugin\marketplace.json` on 2026-10-15; first CI run green on all seven jobs.
+- fetchwright 0.2.0 is released (tag v0.2.0, 2026-10-16: a 429 on one model's quota moves to the next model) and its wiki is live and updated for 0.2.0 (ai-docs/notes/2026-10-15-github-wiki.md). It holds two skills (the reader and a setup advisor), the stdlib CLI `skills/fetchwright/scripts/fetchwright.py`, 39 offline tests, a live smoke test, a size budget (all green) and CI.
+- Installed as fetchwright@mark-local 0.2.0 (user scope) from `Ai\.claude-plugin\marketplace.json`; CI green on all seven jobs for 0.2.0.
 - `GEMINI_API_KEY` is set at user level and works. On 2026-10-15 `gemini-3.8-flash` answered plain calls but 503'd or dropped on URL context; `gemini-3.5-flash-lite` read everything.
-- everscout: conduct rule 17 and a kb/platforms.md keyed-sources row for the route (merged, everscout PR #18).
+- everscout 0.5.0 uses this CLI as its opt-in Reddit thread reader and finds the installed plugin (Mark's config no longer sets `fetchwright.cli`). Free tier: `gemini-3.8-flash` 20 requests a day; Mark's config runs `gemini-3.5-flash-lite` first.
 
 ## Read first
 
@@ -18,8 +18,8 @@ Written 2026-10-15 (night). Run from `D:\m4bwa\Claude\Projects\Ai`. The reposito
 ## The next steps and their limits
 
 1. Run the eval suite: `claude plugin eval . --tag trigger` (native Windows), and the `live` action cases where `GEMINI_API_KEY` reaches the harness. Earlier runs of this harness used WSL2 for Bash cases (readwright's LEARNINGS L-002, and its solution on running the suite on Windows). Record each run as `T-` in each skill's TESTS.md and update `evergreen.json` `tests`. A failure goes to evergreen-tune.
-2. 0.1.1: stop cutting `--json` output at `--max-chars` (a long thread prints broken JSON today), with a test; update the wiki in wikiwright's Update mode (the note lists the pages that name the version). A release needs Mark's go-ahead.
-3. The everscout wiring has its own prompt: everscout's `ai-docs/next-session-prompt.md`. If that session is running or done, do not duplicate it; take any CLI change it asks of fetchwright here.
+2. 0.2.1: stop cutting `--json` output at `--max-chars` (a long thread prints broken JSON today), with a test; update the wiki in wikiwright's Update mode (the note lists the pages that name the version). A release needs Mark's go-ahead.
+3. everscout's own work (its discovery plan) has its own prompt: everscout's `ai-docs/next-session-prompt.md`. Take any CLI change it asks of fetchwright here.
 4. Re-test `gemini-3.8-flash` on URL context once Google's load settles. Note the result in RESEARCH.md as an `R-` finding.
 
 ## Rules
@@ -35,6 +35,5 @@ Written 2026-10-15 (night). Run from `D:\m4bwa\Claude\Projects\Ai`. The reposito
 - If Gemini starts returning text from deleted or removed posts.
 - If requests fail with refusals or 429s: record it and stop.
 - Before any release or tag.
-- Before wiring everscout to fetchwright.
 
 When you stop, rewrite this file for the session after you: what to read first, the next step and its limits, the rules, when to stop and ask. Its last paragraph must give that session this same instruction.
