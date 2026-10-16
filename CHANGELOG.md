@@ -4,7 +4,7 @@ Plugin versions, newest first. Skill-level changes are in each skill's `CHANGELO
 
 ## Unreleased
 
-- A 429 that names one model's own quota (the free tier gives `gemini-3.8-flash` 20 requests a day) moves to the next model, which is then used for the rest of the run; the run stops with exit 3 only when every model's quota is spent, or at any other 429. 41 offline tests.
+- A 429 that names one model's own quota (the free tier gives `gemini-3.8-flash` 20 requests a day) moves to the next model, which is then used for the rest of the run; the run stops with exit 3 only when every model's quota is spent, or at any other 429. 39 offline tests.
 
 ## 0.1.0 · 2026-10-15
 
