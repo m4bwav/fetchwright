@@ -1,0 +1,47 @@
+{
+  "skill": "fetchwright-setup",
+  "_format": "skill-creator evals.json plus evergreen fields (kind, decoy); the runnable copies are the case folders in the repository's root evals/ (claude plugin eval format). Action cases need GEMINI_API_KEY in the eval environment.",
+  "evals": [
+    {
+      "id": "trigger-3",
+      "kind": "trigger",
+      "prompt": "how do I get a gemini api key for fetchwright, and is the free tier private?",
+      "expectations": [
+        "the fetchwright-setup skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "trigger-4",
+      "kind": "trigger",
+      "prompt": "fetchwright check says no key and exits 4, what do I do",
+      "expectations": [
+        "the fetchwright-setup skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "action-2",
+      "kind": "action",
+      "prompt": "is my gemini key set up right for fetchwright? check it for me",
+      "expectations": [
+        "the fetchwright-setup skill is invoked",
+        "a Bash call runs fetchwright.py check",
+        "the key is never printed"
+      ],
+      "evidence": "tool_used Bash matching fetchwright.py ... check",
+      "baseline": "without the skill the agent may echo the variable, printing the key",
+      "runs": 1
+    },
+    {
+      "id": "decoy-3",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "help me set up a Google Maps API key for the store locator on my website",
+      "expectations": [
+        "the fetchwright-setup skill is not invoked"
+      ],
+      "runs": 3
+    }
+  ]
+}

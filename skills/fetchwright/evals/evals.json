@@ -1,0 +1,57 @@
+{
+  "skill": "fetchwright",
+  "_format": "skill-creator evals.json plus evergreen fields (kind, decoy); the runnable copies are the case folders in the repository's root evals/ (claude plugin eval format). Action cases need GEMINI_API_KEY in the eval environment.",
+  "evals": [
+    {
+      "id": "trigger-1",
+      "kind": "trigger",
+      "prompt": "can you read this reddit thread and tell me what people think of the new upscaler? https://www.reddit.com/r/StableDiffusion/comments/1x3y8ot/",
+      "expectations": [
+        "the fetchwright skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "trigger-2",
+      "kind": "trigger",
+      "prompt": "WebFetch keeps getting a 403 on https://www.reddit.com/r/comfyui/comments/1x6p7lt/ - is there another way to get the post and its comments?",
+      "expectations": [
+        "the fetchwright skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "decoy-1",
+      "kind": "trigger",
+      "prompt": "search the web for the best open-source video upscalers released this year",
+      "expectations": [
+        "the fetchwright skill is not invoked"
+      ],
+      "runs": 3,
+      "decoy": true
+    },
+    {
+      "id": "decoy-2",
+      "kind": "trigger",
+      "prompt": "summarise the Google Doc at https://docs.google.com/document/d/1AbC/edit that my team shared",
+      "expectations": [
+        "the fetchwright skill is not invoked"
+      ],
+      "runs": 3,
+      "decoy": true
+    },
+    {
+      "id": "action-1",
+      "kind": "action",
+      "prompt": "what are people saying in the comments of https://www.reddit.com/r/StableDiffusion/comments/1x3y8ot/ ? a plain fetch gets blocked",
+      "expectations": [
+        "the fetchwright skill is invoked",
+        "a Bash call runs fetchwright.py read on the URL"
+      ],
+      "evidence": "tool_used Bash matching fetchwright.py ... read",
+      "baseline": "without the skill the agent tries WebFetch, gets blocked, and cannot read the thread",
+      "needs": "GEMINI_API_KEY in the eval environment",
+      "runs": 1
+    }
+  ]
+}

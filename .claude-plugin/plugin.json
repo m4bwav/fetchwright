@@ -1,0 +1,24 @@
+{
+  "name": "fetchwright",
+  "icon": "./.claude-plugin/icon.png",
+  "version": "0.1.0",
+  "description": "Read public web pages that refuse scripts (Reddit threads, pages that answer plain HTTP clients with a 403 or a wall) through Gemini's URL context tool: Google reads the page, a standard-library Python CLI checks the retrieval, drops removed-comment placeholders and leaked usernames, and returns the title and text or a thread's post and comments. Never uses Google Search. A setup skill covers the Gemini API key, tiers, quotas and free-tier privacy. Evergreen.",
+  "author": {
+    "name": "Mark Rogers"
+  },
+  "license": "MIT",
+  "keywords": [
+    "web-fetch",
+    "reddit",
+    "gemini",
+    "url-context",
+    "agent-skills",
+    "evergreen"
+  ],
+  "skills": "./skills",
+  "repository": "https://github.com/m4bwav/fetchwright",
+  "homepage": "https://github.com/m4bwav/fetchwright",
+  "documentationUrl": "https://github.com/m4bwav/fetchwright#readme",
+  "supportUrl": "https://github.com/m4bwav/fetchwright/issues",
+  "privacyPolicyUrl": "https://github.com/m4bwav/fetchwright#terms-and-privacy"
+}

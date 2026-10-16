@@ -1,0 +1,42 @@
+{
+  "evergreen": "1.0",
+  "name": "fetchwright-setup",
+  "kind": "skill",
+  "main": "SKILL.md",
+  "files": {
+    "research": "RESEARCH.md",
+    "changelog": "CHANGELOG.md",
+    "learnings": "LEARNINGS.md",
+    "tests": "TESTS.md"
+  },
+  "protocol": "MAINTENANCE.md",
+  "source": null,
+  "topic": "Setting up a Gemini API key for a CLI: AI Studio keys and restrictions, environment variables, free and paid tiers, prices, rate limits and error codes, free-tier data use, age and regional rules, model lifecycle",
+  "tier": "fast",
+  "interval_days": 14.0,
+  "last_checked": "2026-10-15",
+  "next_due": null,
+  "verify_at_use": true,
+  "volatile_claims": [
+    {"claim": "New AI Studio keys are restricted to the Gemini API; unrestricted standard keys are rejected (api-key page, 2026-10-06)", "checked": "2026-10-15", "recheck_days": 30},
+    {"claim": "gemini-3.8-flash paid: $0.75 in, $3.75 out per 1M tokens to 2026-12-31, then $1.50 and $7.50; gemini-3.5-flash-lite $0.30 and $2.50 (pricing page, 2026-10-15)", "checked": "2026-10-15", "recheck_days": 14},
+    {"claim": "Free-tier rate limits per model are shown only in AI Studio, not on the rate-limits page (2026-10-15)", "checked": "2026-10-15", "recheck_days": 14},
+    {"claim": "Free tier: prompts and responses improve Google products and human reviewers may read them; paid: not used that way (terms effective 2026-03-23)", "checked": "2026-10-15", "recheck_days": 30},
+    {"claim": "18+; only paid services may serve users in the EEA, Switzerland or the UK (terms effective 2026-03-23)", "checked": "2026-10-15", "recheck_days": 30},
+    {"claim": "Tiers: Free, Tier 1 (billing linked), Tier 2 ($100 + 3 days), Tier 3 ($1,000 + 30 days); prepay from $5; 402 on an empty balance", "checked": "2026-10-15", "recheck_days": 30},
+    {"claim": "Google SDKs prefer GOOGLE_API_KEY over GEMINI_API_KEY when both are set (api-key page, 2026-10-06)", "checked": "2026-10-15", "recheck_days": 60}
+  ],
+  "contradiction": null,
+  "events": [
+    {"date": "2027-01-01", "settle_days": 3, "note": "gemini-3.8-flash paid price doubles"},
+    {"date": "2027-05-07", "settle_days": 7, "note": "earliest shutdown of gemini-3.1-flash-lite"}
+  ],
+  "streak": {"quiet": 0, "pinned_min": 0, "pinned_max": 0, "vau_quiet": 0},
+  "history": [
+    {"date": "2026-10-15", "m": null, "interval_after": 14, "note": "created; one subagent research pass (5 searches, 18 fetches), 2 R- entries"}
+  ],
+  "counts": {"learnings": 1, "changes": 1, "research": 2, "tests": 0},
+  "consolidate_every": 25,
+  "tests": {"last_run": null, "harness": null, "env": null, "cases": 4, "passed": 0, "failed": 0, "failing": [], "last_failure": null, "research_after_days": null},
+  "version": "0.1.0"
+}

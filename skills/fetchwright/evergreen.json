@@ -1,0 +1,68 @@
+{
+  "evergreen": "1.0",
+  "name": "fetchwright",
+  "kind": "skill",
+  "main": "SKILL.md",
+  "files": {
+    "research": "RESEARCH.md",
+    "changelog": "CHANGELOG.md",
+    "learnings": "LEARNINGS.md",
+    "tests": "TESTS.md"
+  },
+  "protocol": "MAINTENANCE.md",
+  "source": null,
+  "topic": "Reading public web pages that refuse ordinary fetchers through Gemini's URL context tool: Interactions API request and response shape, retrieval statuses, supported models, recitation blocks, Gemini API terms on URL context and Search grounding, other agent tools for hard-to-fetch pages",
+  "tier": "fast",
+  "interval_days": 14.0,
+  "last_checked": "2026-10-15",
+  "next_due": "2026-10-29",
+  "verify_at_use": false,
+  "volatile_claims": [
+    "Interactions API response steps: url_context_call, url_context_result (per-URL status), thought, model_output; page tokens in usage.total_tool_use_tokens (2026-10-15)",
+    "Reddit threads read from Google's index under the slug URL (success) while the bare URL's live fetch gives error (2026-10-15)",
+    "gemini-3.8-flash then gemini-3.5-flash-lite is the default model chain; 3.8 was overloaded on URL context calls on 2026-10-15",
+    "Long word-for-word page copies are blocked as recitation (HTTP 400); digests are not (2026-10-15)",
+    "No clause in the Gemini API Additional Terms (effective 2026-03-23) names URL context; Grounding with Google Search results are restricted"
+  ],
+  "contradiction": null,
+  "events": [
+    {
+      "date": "2027-01-01",
+      "settle_days": 3,
+      "note": "gemini-3.8-flash paid price doubles; check the model chain and the setup skill's cost lines"
+    }
+  ],
+  "streak": {
+    "quiet": 0,
+    "pinned_min": 0,
+    "pinned_max": 0,
+    "vau_quiet": 0
+  },
+  "history": [
+    {
+      "date": "2026-10-15",
+      "m": null,
+      "interval_after": 14,
+      "note": "created; research from the everscout Stage 1 test and one subagent pass (5 searches, 18 fetches), 3 R- entries"
+    }
+  ],
+  "counts": {
+    "learnings": 3,
+    "changes": 1,
+    "research": 3,
+    "tests": 1
+  },
+  "consolidate_every": 25,
+  "tests": {
+    "last_run": "2026-10-15T23:30",
+    "harness": "unittest + live smoke",
+    "env": "Windows 11, Python 3.14",
+    "cases": 5,
+    "passed": 0,
+    "failed": 0,
+    "failing": [],
+    "last_failure": null,
+    "research_after_days": null
+  },
+  "version": "0.1.0"
+}
