@@ -26,7 +26,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 API_BASE = "https://generativelanguage.googleapis.com/v1beta"
 DEFAULT_MODELS = ("gemini-3.8-flash", "gemini-3.5-flash-lite")
 KEY_VARS = ("GEMINI_API_KEY", "GOOGLE_API_KEY")
