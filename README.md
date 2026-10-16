@@ -1,6 +1,6 @@
 # fetchwright
 
-![banner](https://raw.githubusercontent.com/m4bwav/fetchwright/main/.github/images/banner.jpg)
+![A brass robot reaching through a lit library window for a single glowing page, past a locked iron gate](https://raw.githubusercontent.com/m4bwav/fetchwright/main/.github/images/banner.jpg)
 
 An agent plugin for reading public web pages that refuse scripts. A Reddit thread answers a plain HTTP client with a block page, and some sites want a browser. fetchwright hands the URL to Gemini's URL context tool. Google reads the page from its own index or with a live fetch, and the model gives the page back as JSON. A small command-line tool checks that Google retrieved the page, drops what a note should not keep, and prints the result for the agent.
 
