@@ -81,7 +81,7 @@ fetchwright should stay small enough that nobody thinks twice about installing i
 
 ## Evergreen
 
-Both skills keep their research current on a schedule (tier fast). `fetchwright-setup` re-checks prices, limits and terms lines before quoting them, because those change monthly. Every change is logged with its reason in each skill's CHANGELOG.md, findings in RESEARCH.md and lessons from real use in LEARNINGS.md.
+Both skills keep their research current on a schedule (tier fast). `fetchwright-setup` re-checks prices, limits and terms lines before quoting them, because those change monthly. Plugin versions are in [CHANGELOG.md](CHANGELOG.md); every skill change is logged with its reason in that skill's CHANGELOG.md, findings in RESEARCH.md and lessons from real use in LEARNINGS.md.
 
 ## Licence
 
