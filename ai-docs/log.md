@@ -5,3 +5,4 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 ## [2026-10-15] init | scaffolded
 ## [2026-10-15] add | solution: Word-for-word page copies are blocked as recitation; ask for a digest
 ## [2026-10-15] add | decision: fetchwright as a standalone public plugin with a stdlib CLI
+## [2026-10-15] handoff | 0.1.0 built and pushed; CI green; installed fetchwright@mark-local; everscout PR #18 merged; evals and wiki open

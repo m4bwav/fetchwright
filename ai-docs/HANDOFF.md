@@ -4,13 +4,13 @@
 
 ## Current state
 - 0.1.0 built on 2026-10-15 and pushed to the public repo github.com/m4bwav/fetchwright (main). Not tagged or released: releases need the owner's go-ahead.
-- Two skills: `skills/fetchwright` (reader, CLI `scripts/fetchwright.py` with `check` and `read`) and `skills/fetchwright-setup` (key, tiers, quotas, privacy; `verify_at_use`). Both are registered with evergreen, and `evergreen.py lint` is OK on both.
+- Two skills: `skills/fetchwright` (reader, CLI `scripts/fetchwright.py` with `check` and `read`) and `skills/fetchwright-setup` (key, tiers, quotas, privacy; `verify_at_use`). Both are registered with evergreen, and `evergreen.py lint` is OK on both. Installed locally as fetchwright@mark-local 0.1.0 (user scope).
 - Tests: `python tests/test_fetchwright.py` (37 offline, pass), `python tests/smoke_live.py` (live, passed 2026-10-15), `python scripts/budget.py` (all green). CI runs the suite on three operating systems with Python 3.10 and 3.14, plus the budget job.
 - Live on 2026-10-15:
   - `gemini-3.8-flash` answers `check` but gives 503 or drops on URL context reads; `gemini-3.5-flash-lite` read every page.
   - A settled Reddit thread gave 47 comments.
   - Wikipedia read as a digest.
-- everscout (separate repo) has conduct rule 17 and a kb/platforms.md keyed-sources row for this route, PR on branch `kb/fetchwright-route`.
+- everscout (separate repo) has conduct rule 17 and a kb/platforms.md keyed-sources row for this route, merged as everscout PR #18.
 
 ## In progress
 - Eval cases in `evals/` (6 trigger and decoy, 2 action) have never run. They need a fresh session with the plugin installed; the action cases need `GEMINI_API_KEY` in the eval environment.

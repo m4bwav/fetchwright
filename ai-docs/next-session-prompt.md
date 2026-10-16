@@ -5,9 +5,9 @@ Written 2026-10-15 (night). Run from `D:\m4bwa\Claude\Projects\Ai`. The reposito
 ## Where things stand
 
 - fetchwright 0.1.0 is on main, not tagged or released. It holds two skills (the reader and a setup advisor), the stdlib CLI `skills/fetchwright/scripts/fetchwright.py`, 37 offline tests, a live smoke test, a size budget (all green) and CI.
-- Installed as fetchwright@mark-local from `Ai\.claude-plugin\marketplace.json`, if the install step went through; check with `claude plugin list`.
+- Installed as fetchwright@mark-local 0.1.0 (user scope) from `Ai\.claude-plugin\marketplace.json` on 2026-10-15; first CI run green on all seven jobs.
 - `GEMINI_API_KEY` is set at user level and works. On 2026-10-15 `gemini-3.8-flash` answered plain calls but 503'd or dropped on URL context; `gemini-3.5-flash-lite` read everything.
-- everscout: conduct rule 17 and a kb/platforms.md keyed-sources row for the route (merged or open: check `gh pr list -R m4bwav/everscout`).
+- everscout: conduct rule 17 and a kb/platforms.md keyed-sources row for the route (merged, everscout PR #18).
 
 ## Read first
 
