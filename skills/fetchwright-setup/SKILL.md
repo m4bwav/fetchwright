@@ -2,7 +2,7 @@
 name: fetchwright-setup
 description: "Set up and advise on the Gemini API key that fetchwright needs. Covers creating a key in AI Studio, storing it as GEMINI_API_KEY (setx on Windows, a shell profile on macOS and Linux) without pasting it into chat or a repository, and checking it with fetchwright check. Explains the free and paid tiers, rate limits and 429s, what a read costs, what Google may do with free-tier prompts (used to improve products, read by human reviewers), the 18+ rule, and the EEA, Swiss and UK rule for serving others. Use when the user asks 'set up fetchwright', 'get a gemini api key', 'fetchwright says no key', 'is the gemini free tier private', 'why does gemini give me 429', 'what does fetchwright cost', 'should I pay for gemini', or when fetchwright check exits 4. Also for 'refresh fetchwright-setup'. Not for other Google APIs, Vertex AI, or reading pages (that is fetchwright)."
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # fetchwright-setup

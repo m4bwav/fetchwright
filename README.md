@@ -71,15 +71,15 @@ Other agents that read Agent Skills (`SKILL.md`): link or copy the two folders u
 
 fetchwright should stay small enough that nobody thinks twice about installing it. `scripts/budget.py` measures each row, and CI fails at red.
 
-| measure | green up to | yellow up to | now (0.1.0) |
+| measure | green up to | yellow up to | now (0.2.0) |
 |---|---:|---:|---:|
 | longest skill description, characters (loaded in every session) | 1,000 | 1,300 | 873 |
 | both descriptions, characters | 1,800 | 2,400 | 1,734 |
-| largest SKILL.md, tokens | 2,500 | 3,500 | 1,519 |
+| largest SKILL.md, tokens | 2,500 | 3,500 | 1,590 |
 | largest reference file, tokens | 2,000 | 3,000 | 1,292 |
-| fetchwright.py, lines | 600 | 900 | 497 |
-| installed skills folder, KB | 150 | 400 | 88 |
-| tracked repository, KB | 1,024 | 3,072 | 489 |
+| fetchwright.py, lines | 600 | 900 | 510 |
+| installed skills folder, KB | 150 | 400 | 92 |
+| tracked repository, KB | 1,024 | 3,072 | 523 |
 
 ## Evergreen
 

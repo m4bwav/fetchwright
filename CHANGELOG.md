@@ -2,7 +2,7 @@
 
 Plugin versions, newest first. Skill-level changes are in each skill's `CHANGELOG.md`; the session log is `ai-docs/log.md`.
 
-## Unreleased
+## 0.2.0 · 2026-10-16
 
 - A 429 that names one model's own quota (the free tier gives `gemini-3.8-flash` 20 requests a day) moves to the next model, which is then used for the rest of the run; the run stops with exit 3 only when every model's quota is spent, or at any other 429. 39 offline tests.
 
