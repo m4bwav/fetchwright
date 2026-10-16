@@ -164,6 +164,23 @@ class FallbackTests(unittest.TestCase):
         self.assertEqual(len(post.bodies), 1)
         self.assertIn("429", err)
 
+    def test_one_models_daily_quota_moves_on(self):
+        quota = (429, {"error": {"message": "Rate limit exceeded for model a (limit: 20 requests per day on Free Tier). "
+                                            "Please retry in 22h3m56s"}})
+        post = FakePost(quota, (200, interaction(GOOD_THREAD)), (200, interaction(GOOD_THREAD)))
+        code, out, _ = run_cli(["read", THREAD, SLUG, "--json", "--models", "a,b", "--gap", "0"], post)
+        self.assertEqual(code, 0)
+        self.assertEqual([r["model"] for r in json.loads(out)], ["b", "b"])
+        self.assertEqual([b["model"] for b in post.bodies], ["a", "b", "b"], "a spent model is skipped for later URLs")
+
+    def test_every_models_quota_spent_stops(self):
+        quota = lambda m: (429, {"error": {"message": f"Rate limit exceeded for model {m}. Please retry in 5h"}})
+        post = FakePost(quota("a"), quota("b"))
+        code, out, err = run_cli(["read", THREAD, PAGE, "--json", "--models", "a,b"], post)
+        self.assertEqual(code, fw.EXIT_RATE)
+        self.assertEqual(len(post.bodies), 2)
+        self.assertIn("retry in 5h", err)
+
     def test_403_and_bad_key_stop(self):
         for status, msg in ((403, "The caller does not have permission"), (400, "API key not valid"),
                             (402, "Payment Required")):

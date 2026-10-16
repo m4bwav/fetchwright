@@ -163,6 +163,9 @@ def classify(status, data):
         return "next", f"overloaded ({status}): {message}"
     if status == 404:
         return "next", f"model not available (404): {message}"
+    if status == 429 and re.search(r"\bfor model\b|per day|perday", message.lower()):
+        # one model's own quota (the free tier gives each model its own daily limit): the next model may still answer
+        return "quota", f"model quota used up (429): {message}"
     if status == 429:
         return "stop-rate", f"rate limited (429): {message}"
     if status == 402:
@@ -176,16 +179,24 @@ def classify(status, data):
     return "fail", f"HTTP {status}: {message}"
 
 
-def call_models(models, instruction, key, timeout, post=None):
-    """Try each model in turn. Returns (model, data, tried) for the first 200, or (None, None, tried)."""
+def call_models(models, instruction, key, timeout, post=None, spent=None):
+    """Try each model in turn. Returns (model, data, tried) for the first 200, or (None, None, tried).
+    spent: models whose quota ran out earlier in this run; they are skipped and new ones are added. When every
+    model's quota is spent, the run stops with EXIT_RATE like any other 429."""
     post = post or http_post
+    spent = set() if spent is None else spent
     tried = []
-    for model in models:
+    for model in [m for m in models if m not in spent]:
         status, data, secs = post(f"{API_BASE}/interactions", build_body(model, instruction), key, timeout)
         verdict, why = classify(status, data)
         tried.append({"model": model, "http": status, "seconds": round(secs, 1), "outcome": verdict, "why": why[:300]})
         if verdict == "ok":
             return model, data, tried
+        if verdict == "quota":
+            spent.add(model)
+            if all(m in spent for m in models):
+                raise Stop(EXIT_RATE, why + " Every model's quota is used up. Stopped: wait before trying again.")
+            continue
         if verdict == "stop-rate":
             raise Stop(EXIT_RATE, why + " Stopped: wait before trying again, and check the quota in AI Studio.")
         if verdict == "stop-key":
@@ -384,17 +395,19 @@ def cmd_read(args):
             print(f"not an http(s) URL: {url}", file=sys.stderr)
             return EXIT_USAGE
     models = model_list(args.models)
-    results, code = [], EXIT_OK
+    results, code, spent = [], EXIT_OK, set()
     for i, url in enumerate(args.urls):
         if i:
             time.sleep(args.gap)
         mode = "thread" if args.thread or (not args.page and is_thread_url(url)) else "page"
         style = "digest" if args.digest else "verbatim" if (args.verbatim or mode == "thread") else "digest"
         try:
-            model, data, tried = call_models(models, instruction(mode, style, url, args.max_comments), key, args.timeout)
+            model, data, tried = call_models(models, instruction(mode, style, url, args.max_comments), key, args.timeout,
+                                              spent=spent)
             if data is None and style == "verbatim" and tried and tried[-1]["outcome"] == "recitation":
                 style = "digest"
-                model, data, more = call_models(models, instruction(mode, style, url, args.max_comments), key, args.timeout)
+                model, data, more = call_models(models, instruction(mode, style, url, args.max_comments), key, args.timeout,
+                                                spent=spent)
                 tried += more
         except Stop as stop:
             print(str(stop), file=sys.stderr)
@@ -407,7 +420,7 @@ def cmd_read(args):
             with open(os.path.join(args.save_raw, name), "w", encoding="utf-8", newline="\n") as f:
                 json.dump({"url": url, "model": model, "tried": tried, "response": data}, f, indent=1, ensure_ascii=False)
         result = build_result(url, mode, model, data, tried, style)
-        if model is None and all(t["outcome"] == "next" for t in tried):
+        if model is None and all(t["outcome"] in ("next", "quota") for t in tried):
             code = max(code, EXIT_DOWN)
         elif not result["read_ok"]:
             code = max(code, EXIT_UNREAD)

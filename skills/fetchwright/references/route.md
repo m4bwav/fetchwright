@@ -26,7 +26,8 @@ Seen on 2026-10-15: `success` and `error`. Documented: success, error, paywall, 
 | 503, 500, 502, 504, a dropped connection | overloaded (`gemini-3.8-flash` was, most of 2026-10-15) | next model |
 | 404 | model gone or closed to new users (`gemini-2.5-flash`) | next model |
 | 400 "copyright/recitation" | the model may not copy that much text | retry once as a digest |
-| 429 | rate or daily quota | stop the run |
+| 429 naming one model ("for model X", "per day") | that model's quota, for example 20 a day for `gemini-3.8-flash` on the free tier (2026-10-16) | next model, skipped for the rest of the run; stop when every model's quota is used up |
+| 429, other | rate limit | stop the run |
 | 400 "API key not valid", 401, 403 | key | stop the run |
 | 402 | prepaid balance empty | stop the run |
 
