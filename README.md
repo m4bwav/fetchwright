@@ -56,6 +56,8 @@ claude plugin marketplace add ./fetchwright
 claude plugin install fetchwright@fetchwright
 ```
 
+The [wiki](https://github.com/m4bwav/fetchwright/wiki) has every command with its output, the JSON record, recipes and an FAQ.
+
 Other agents that read Agent Skills (`SKILL.md`): link or copy the two folders under `skills/` into the agent's skills folder. The CLI alone needs only Python and a key: `python skills/fetchwright/scripts/fetchwright.py --help`. The `fetchwright-setup` skill walks through getting the key.
 
 ## Tests
@@ -73,11 +75,11 @@ fetchwright should stay small enough that nobody thinks twice about installing i
 |---|---:|---:|---:|
 | longest skill description, characters (loaded in every session) | 1,000 | 1,300 | 873 |
 | both descriptions, characters | 1,800 | 2,400 | 1,734 |
-| largest SKILL.md, tokens | 2,500 | 3,500 | 1,430 |
+| largest SKILL.md, tokens | 2,500 | 3,500 | 1,519 |
 | largest reference file, tokens | 2,000 | 3,000 | 1,292 |
 | fetchwright.py, lines | 600 | 900 | 497 |
-| installed skills folder, KB | 150 | 400 | 86 |
-| tracked repository, KB | 1,024 | 3,072 | under 300 |
+| installed skills folder, KB | 150 | 400 | 88 |
+| tracked repository, KB | 1,024 | 3,072 | 489 |
 
 ## Evergreen
 

@@ -1,10 +1,10 @@
-# Next session: fetchwright after 0.1.0 (evals, wiki, everscout wiring)
+# Next session: fetchwright after 0.1.0 (evals, 0.1.1)
 
 Written 2026-10-15 (night). Run from `D:\m4bwa\Claude\Projects\Ai`. The repository is `Ai\fetchwright` (public, m4bwav/fetchwright, branch main). everscout is `Ai\everscout`; its main clone holds another session's uncommitted edits, so work there in a worktree off origin/main (`Ai\everscout-wt-urlctx` exists).
 
 ## Where things stand
 
-- fetchwright 0.1.0 is on main, not tagged or released. It holds two skills (the reader and a setup advisor), the stdlib CLI `skills/fetchwright/scripts/fetchwright.py`, 37 offline tests, a live smoke test, a size budget (all green) and CI.
+- fetchwright 0.1.0 is released (tag v0.1.0, 2026-10-15) and its wiki is live (ai-docs/notes/2026-10-15-github-wiki.md). It holds two skills (the reader and a setup advisor), the stdlib CLI `skills/fetchwright/scripts/fetchwright.py`, 37 offline tests, a live smoke test, a size budget (all green) and CI.
 - Installed as fetchwright@mark-local 0.1.0 (user scope) from `Ai\.claude-plugin\marketplace.json` on 2026-10-15; first CI run green on all seven jobs.
 - `GEMINI_API_KEY` is set at user level and works. On 2026-10-15 `gemini-3.8-flash` answered plain calls but 503'd or dropped on URL context; `gemini-3.5-flash-lite` read everything.
 - everscout: conduct rule 17 and a kb/platforms.md keyed-sources row for the route (merged, everscout PR #18).
@@ -18,8 +18,8 @@ Written 2026-10-15 (night). Run from `D:\m4bwa\Claude\Projects\Ai`. The reposito
 ## The next steps and their limits
 
 1. Run the eval suite: `claude plugin eval . --tag trigger` (native Windows), and the `live` action cases where `GEMINI_API_KEY` reaches the harness. Earlier runs of this harness used WSL2 for Bash cases (readwright's LEARNINGS L-002, and its solution on running the suite on Windows). Record each run as `T-` in each skill's TESTS.md and update `evergreen.json` `tests`. A failure goes to evergreen-tune.
-2. Wiki: once Mark has created the first page (check with `git ls-remote https://github.com/m4bwav/fetchwright.wiki.git`), write it with the wikiwright skill. Until then it stays on his list.
-3. everscout wiring (optional, ask Mark first): `everscout.py thread` could call `fetchwright.py read --json` as a subprocess when the user opts in (config `reddit.thread_reader: fetchwright`) and Arctic Shift has stopped. That would be a CLI change with tests, a decision record, and a minor version.
+2. 0.1.1: stop cutting `--json` output at `--max-chars` (a long thread prints broken JSON today), with a test; update the wiki in wikiwright's Update mode (the note lists the pages that name the version). A release needs Mark's go-ahead.
+3. The everscout wiring has its own prompt: everscout's `ai-docs/next-session-prompt.md`. If that session is running or done, do not duplicate it; take any CLI change it asks of fetchwright here.
 4. Re-test `gemini-3.8-flash` on URL context once Google's load settles. Note the result in RESEARCH.md as an `R-` finding.
 
 ## Rules

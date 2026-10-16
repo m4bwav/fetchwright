@@ -1,0 +1,356 @@
+## installed
+fetchwright 0.1.0 from fw-v010; Python 3.14.6
+
+## home-read (exit 0)
+# I made a small upscaler node
+url: https://www.reddit.com/r/examplesub/comments/1abc234/
+model: gemini-3.8-flash  mode: thread  style: verbatim
+retrieval: success https://www.reddit.com/r/examplesub/comments/1abc234/a_small_upscaler_node/; error https://www.reddit.com/r/examplesub/comments/1abc234/
+tokens: page 4210, output 410, total 4810
+
+It upscales video in tiles so it fits in 8 GB.
+
+Link in the comments.
+
+## Comments (3 kept; dropped 1 placeholders, 1 lone usernames or words, 0 empty)
+1. Works on my 3060, about 2 fps at 1080p.
+2. [OP] Thanks for testing. Tiles of 512 are the default.
+3. Does it keep the audio track?
+
+## check-no-call (exit 0)
+fetchwright 0.1.0
+key: found in environment variable GEMINI_API_KEY
+
+## check (exit 0)
+fetchwright 0.1.0
+key: found in environment variable GEMINI_API_KEY
+  gemini-3.8-flash: answers (HTTP 200, 0.1 s)
+  gemini-3.5-flash-lite: answers (HTTP 200, 0.1 s)
+
+## help (exit 0)
+usage: fetchwright [-h] [--version] {check,read} ...
+
+Read pages other fetchers cannot, through Gemini's URL context tool.
+
+positional arguments:
+  {check,read}
+    check       is a key set, and which models answer (one tiny request per
+                model)
+    read        read one or more public pages
+
+options:
+  -h, --help    show this help message and exit
+  --version     show program's version number and exit
+
+## read-help (exit 0)
+usage: fetchwright read [-h] [--thread | --page] [--verbatim | --digest]
+                        [--max-comments MAX_COMMENTS] [--models MODELS]
+                        [--timeout TIMEOUT] [--gap GAP] [--json] [--out OUT]
+                        [--max-chars MAX_CHARS] [--save-raw DIR]
+                        URL [URL ...]
+
+positional arguments:
+  URL
+
+options:
+  -h, --help            show this help message and exit
+  --thread              read as a discussion thread: title, post, comments
+  --page                read as a page: title and main text
+  --verbatim            ask for the text word for word (threads do by default;
+                        long pages are often blocked as recitation, then
+                        fetchwright retries as a digest)
+  --digest              ask for a faithful account instead of quotes (pages do
+                        by default)
+  --max-comments MAX_COMMENTS
+                        ask for at most N comments (cuts output tokens)
+  --models MODELS       comma-separated model list; the next is tried on 5xx,
+                        404 or a dropped connection
+  --timeout TIMEOUT     seconds per request (default 120)
+  --gap GAP             seconds between URLs (default 5)
+  --json
+  --out OUT             write the output to this file instead of stdout
+  --max-chars MAX_CHARS
+                        cut stdout here (0 for no limit)
+  --save-raw DIR        keep each raw response here (page text: keep it out of
+                        repositories)
+
+## check-help (exit 0)
+usage: fetchwright check [-h] [--models MODELS] [--no-call]
+                         [--timeout TIMEOUT] [--json]
+
+options:
+  -h, --help         show this help message and exit
+  --models MODELS    comma-separated, first is tried first (default
+                     gemini-3.8-flash,gemini-3.5-flash-lite or
+                     FETCHWRIGHT_MODELS)
+  --no-call          only look for the key; send nothing
+  --timeout TIMEOUT
+  --json
+
+## version (exit 0)
+fetchwright 0.1.0
+
+## read-json (exit 0)
+{
+ "fetchwright": "0.1.0",
+ "url": "https://www.reddit.com/r/examplesub/comments/1abc234/",
+ "mode": "thread",
+ "style": "verbatim",
+ "model": "gemini-3.8-flash",
+ "models_tried": [
+  {
+   "model": "gemini-3.8-flash",
+   "http": 200,
+   "seconds": 0.1,
+   "outcome": "ok",
+   "why": ""
+  }
+ ],
+ "read_ok": true,
+ "why_not": "",
+ "retrieval": [
+  {
+   "url": "https://www.reddit.com/r/examplesub/comments/1abc234/a_small_upscaler_node/",
+   "status": "success"
+  },
+  {
+   "url": "https://www.reddit.com/r/examplesub/comments/1abc234/",
+   "status": "error"
+  }
+ ],
+ "new_statuses": [],
+ "title": "I made a small upscaler node",
+ "usage": {
+  "input": 190,
+  "page": 4210,
+  "output": 410,
+  "total": 4810
+ },
+ "body": "It upscales video in tiles so it fits in 8 GB.\n\nLink in the comments.",
+ "body_removed": false,
+ "comments": [
+  {
+   "text": "Works on my 3060, about 2 fps at 1080p.",
+   "author_is_op": false
+  },
+  {
+   "text": "Thanks for testing. Tiles of 512 are the default.",
+   "author_is_op": true
+  },
+  {
+   "text": "Does it keep the audio track?",
+   "author_is_op": false
+  }
+ ],
+ "dropped": {
+  "placeholder": 1,
+  "lone_token": 1,
+  "empty": 0
+ }
+}
+
+## read-page (exit 0)
+# An example article
+url: https://example.org/article
+model: gemini-3.8-flash  mode: page  style: digest  (the model's account, not quotes)
+retrieval: success https://example.org/article
+tokens: page 3120, output 410, total 3720
+
+The article opens with what the project is for.
+
+Its second section lists three releases, in 2024, 2025 and 2026.
+
+## read-verbatim (exit 0)
+{
+ "fetchwright": "0.1.0",
+ "url": "https://example.org/article",
+ "mode": "page",
+ "style": "digest",
+ "model": "gemini-3.8-flash",
+ "models_tried": [
+  {
+   "model": "gemini-3.8-flash",
+   "http": 400,
+   "seconds": 0.1,
+   "outcome": "recitation",
+   "why": "blocked as recitation (400): Request blocked due to copyright/recitation content."
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "http": 200,
+   "seconds": 0.1,
+   "outcome": "ok",
+   "why": ""
+  }
+ ],
+ "read_ok": true,
+ "why_not": "",
+ "retrieval": [
+  {
+   "url": "https://example.org/article",
+   "status": "success"
+  }
+ ],
+ "new_statuses": [],
+ "title": "An example article",
+ "usage": {
+  "input": 190,
+  "page": 3120,
+  "output": 410,
+  "total": 3720
+ },
+ "text": "The article opens with what the project is for.\n\nIts second section lists three releases, in 2024, 2025 and 2026."
+}
+
+## read-unread (exit 1)
+# https://example.org/article
+url: https://example.org/article
+model: gemini-3.8-flash  mode: page  style: digest  (the model's account, not quotes)
+retrieval: error https://example.org/article
+tokens: page 300, output 410, total 900
+NOT READ: Not able to browse the provided URL.
+
+## read-busy (exit 0)
+{
+ "fetchwright": "0.1.0",
+ "url": "https://www.reddit.com/r/examplesub/comments/1abc234/",
+ "mode": "thread",
+ "style": "verbatim",
+ "model": "gemini-3.5-flash-lite",
+ "models_tried": [
+  {
+   "model": "gemini-3.8-flash",
+   "http": 503,
+   "seconds": 0.1,
+   "outcome": "next",
+   "why": "overloaded (503): This model is currently experiencing high demand."
+  },
+  {
+   "model": "gemini-3.5-flash-lite",
+   "http": 200,
+   "seconds": 0.1,
+   "outcome": "ok",
+   "why": ""
+  }
+ ],
+ "read_ok": true,
+ "why_not": "",
+ "retrieval": [
+  {
+   "url": "https://www.reddit.com/r/examplesub/comments/1abc234/a_small_upscaler_node/",
+   "status": "success"
+  },
+  {
+   "url": "https://www.reddit.com/r/examplesub/comments/1abc234/",
+   "status": "error"
+  }
+ ],
+ "new_statuses": [],
+ "title": "I made a small upscaler node",
+ "usage": {
+  "input": 190,
+  "page": 4210,
+  "output": 410,
+  "total": 4810
+ },
+ "b
+[cut at 900 characters of 1357; use --max-chars 0 or --json --out FILE]
+
+## read-rate (exit 3)
+rate limited (429): Resource has been exhausted. Stopped: wait before trying again, and check the quota in AI Studio.
+
+## read-nokey (exit 4)
+No Gemini API key: set GEMINI_API_KEY (the fetchwright-setup skill walks through it).
+
+## check-nokey (exit 4)
+fetchwright 0.1.0
+key: not set (GEMINI_API_KEY)
+
+## read-badurl (exit 2)
+not an http(s) URL: file:///etc/hosts
+
+## recipe-several (exit 0)
+# I made a small upscaler node
+url: https://www.reddit.com/r/examplesub/comments/1abc234/
+model: gemini-3.8-flash  mode: thread  style: verbatim
+retrieval: success https://www.reddit.com/r/examplesub/comments/1abc234/a_small_upscaler_node/; error https://www.reddit.com/r/examplesub/comments/1abc234/
+tokens: page 4210, output 410, total 4810
+
+It upscales video in tiles so it fits in 8 GB.
+
+Link in the comments.
+
+## Comments (3 kept; dropped 1 placeholders, 1 lone usernames or words, 0 empty)
+1. Works on my 3060, about 2 fps at 1080p.
+2. [OP] Thanks for testing. Tiles of 512 are the default.
+3. Does it keep the audio track?
+
+# An example article
+url: https://example.org/article
+model: gemini-3.8-flash  mode: page  style: digest  (the model's account, not quotes)
+retrieval: success https://example.org/article
+tokens: page 3120, output 410, total 3720
+
+The article opens with what the project is for.
+
+Its second section lists three releases, in 2024, 2025 and 2026.
+
+## recipe-fewer (exit 0)
+# I made a small upscaler node
+url: https://www.reddit.com/r/examplesub/comments/1abc234/
+model: gemini-3.8-flash  mode: thread  style: verbatim
+retrieval: success https://www.reddit.com/r/examplesub/comments/1abc234/a_small_upscaler_node/; error https://www.reddit.com/r/examplesub/comments/1abc234/
+tokens: page 4210, output 410, total 4810
+
+It upscales video in tiles so it fits in 8 GB.
+
+Link in the comments.
+
+## Comments (3 kept; dropped 1 placeholders, 1 lone usernames or words, 0 empty)
+1. Works on my 3060, about 2 fps at 1080p.
+2. [OP] Thanks for testing. Tiles of 512 are the default.
+3. Does it keep the audio track?
+
+## recipe-models (exit 0)
+# I made a small upscaler node
+url: https://www.reddit.com/r/examplesub/comments/1abc234/
+model: gemini-3.5-flash-lite  mode: thread  style: verbatim
+retrieval: success https://www.reddit.com/r/examplesub/comments/1abc234/a_small_upscaler_node/; error https://www.reddit.com/r/examplesub/comments/1abc234/
+tokens: page 4210, output 410, total 4810
+
+It upscales video in tiles so it fits in 8 GB.
+
+Link in the comments.
+
+## Comments (3 kept; dropped 1 placeholders, 1 lone usernames or words, 0 empty)
+1. Works on my 3060, about 2 fps at 1080p.
+2. [OP] Thanks for testing. Tiles of 512 are the default.
+3. Does it keep the audio track?
+
+## recipe-out (exit 0)
+wrote thread.json (1169 characters)
+
+## recipe-load (exit 0)
+I made a small upscaler node
+3 comments kept, dropped: {'placeholder': 1, 'lone_token': 1, 'empty': 0}
+
+## recipe-subprocess (exit 0)
+True gemini-3.8-flash 3
+
+## dev-tests (exit 0)
+.....................................
+----------------------------------------------------------------------
+Ran 37 tests in <seconds>s
+
+OK
+
+## dev-budget (exit 0)
+longest skill description, characters (always loaded; cut at 1,536)       873  green<=1000  yellow<=1300  green  fetchwright-setup
+both skill descriptions, characters                                      1734  green<=1800  yellow<=2400  green  
+largest SKILL.md, tokens (loaded on every use)                           1519  green<=2500  yellow<=3500  green  fetchwright
+largest reference file, tokens (loaded on demand)                        1292  green<=2000  yellow<=3000  green  fetchwright-setup/gemini-api.md
+fetchwright.py, lines                                                     497  green<=600   yellow<=900   green  
+installed skills folder, KB                                                88  green<=150   yellow<=400   green  
+tracked repository, KB                                                    489  green<=1024  yellow<=3072  green  
+budget: GREEN
+
