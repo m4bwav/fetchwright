@@ -52,7 +52,7 @@ FW read URL1 URL2 --gap 6           # several URLs, one request each, 5 s apart 
 - Never add Google Search to a request, and never use Gemini's search to find URLs: Google's terms forbid passing grounded results to another model. The CLI refuses it.
 - Notes keep it short: paraphrase, quote at most a line, link the source. No usernames in notes, and drop what the author deleted.
 - On the free tier Google may use prompts and answers to improve its products, and human reviewers may read them. Read public pages only; never send anything private through it.
-- Exit 3 (429): stop. Tell the user, and do not retry within the hour. Exit 4: the key was refused, or the prepaid balance is empty (fetchwright-setup). Exit 5: every model was down; try later.
+- A 429 that names one model's own quota (the free tier gives each model a daily limit; `gemini-3.8-flash` allows 20 a day) moves to the next model, and that model is skipped for the rest of the run. Exit 3 (any other 429, or every model's quota used up): stop. Tell the user, and do not retry within the hour, or before the time Google's message gives. Exit 4: the key was refused, or the prepaid balance is empty (fetchwright-setup). Exit 5: every model was down; try later.
 - Say what the terms say and what is untested; never call the route "legal". Details: [references/route.md](references/route.md).
 
 ## Exit codes

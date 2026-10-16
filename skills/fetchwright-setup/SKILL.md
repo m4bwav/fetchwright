@@ -46,7 +46,7 @@ If both `GEMINI_API_KEY` and `GOOGLE_API_KEY` are set, fetchwright uses `GEMINI_
 - Free tier: no billing, limits shown in AI Studio, prompts used to improve products.
 - Paid: link a billing account to the project (prepay from $5). Prompts are then not used to improve products, and limits rise with spending (Tier 1, 2, 3). Unlinking billing returns the project to free.
 - What a read costs: the fetched page counts as input tokens; URL context has no separate charge. A Reddit thread was 3,000 to 15,000 page tokens and 600 to 10,000 output tokens in a test. Prices per model are in the reference with their date; work the cost out from them, never from memory.
-- A 429 means the minute rate or the daily quota ran out: wait (daily quotas reset at midnight Pacific time) or move to paid. fetchwright stops at the first 429. A 402 means a prepaid balance ran out.
+- A 429 means the minute rate or the daily quota ran out: wait (daily quotas reset at midnight Pacific time) or move to paid. A 429 on one model's own quota moves fetchwright to the next model; it stops when every model is out, or at any other 429. On 2026-10-16 the free tier allowed `gemini-3.8-flash` 20 requests a day. A 402 means a prepaid balance ran out.
 
 ## Step 5: hand back
 
