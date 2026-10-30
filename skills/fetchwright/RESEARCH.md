@@ -2,7 +2,7 @@
 
 Findings that back [SKILL.md](SKILL.md), [references/route.md](references/route.md) and `scripts/fetchwright.py`. Changes they caused are logged in [CHANGELOG.md](CHANGELOG.md); procedural lessons live in [LEARNINGS.md](LEARNINGS.md); test runs in [TESTS.md](TESTS.md); state in `evergreen.json`. Protocol: [MAINTENANCE.md](MAINTENANCE.md).
 
-Topic: reading public web pages that refuse ordinary fetchers through Gemini's URL context tool: the Interactions API's request and response shape, retrieval statuses, which models support the tool, recitation blocks, the Gemini API terms on URL context and Google Search grounding, and other tools agents use for hard-to-fetch pages. Tier `fast`. Last refresh 2026-10-15; next due 2026-10-29.
+Topic: reading public web pages that refuse ordinary fetchers through Gemini's URL context tool: the Interactions API's request and response shape, retrieval statuses, which models support the tool, recitation blocks, the Gemini API terms on URL context and Google Search grounding, and other tools agents use for hard-to-fetch pages. Tier `fast`. Last refresh 2026-10-30; next due in `evergreen.json`.
 
 ## Current understanding
 
@@ -43,6 +43,14 @@ Testing:
 - `"url_context" eval OR test site:github.com 2026`.
 
 ## Findings
+
+### R-20261030-1 · 2026-10-30 · Quiet check: nothing on URL context; GenerateContent now stores by default on paid tier
+
+- Summary: Gemini API changelog since 2026-10-15: GenerateContent on new paid-tier projects stores requests by default like Interactions (2026-10-26; fetchwright already sends store false on Interactions, so no change); a beta gemini-api CLI for the Interactions API (2026-10-27), an option for a shell route but not a replacement for the read prompt and status checks; Computer Use GA (2026-10-30). Nothing on url_context, flash-lite models, limits or the free tier. Forum: one open thread on tables and images lost through the API. Tooling: MCP registry search url-context returns 0. Testing: smoke not re-run (no code change).
+- Track: subject, tooling
+- Sources: https://ai.google.dev/gemini-api/docs/changelog, https://discuss.ai.google.dev/t/api-and-url-context-inconsistencies/92406
+- Magnitude: 0.15
+- applied: none (research only)
 
 ### R-20261015-1 · 2026-10-15 · Stage 1: six Reddit threads read right on gemini-3.5-flash-lite
 - Track: subject, testing
