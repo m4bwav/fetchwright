@@ -14,8 +14,8 @@
   "topic": "Reading public web pages that refuse ordinary fetchers through Gemini's URL context tool: Interactions API request and response shape, retrieval statuses, supported models, recitation blocks, Gemini API terms on URL context and Search grounding, other agent tools for hard-to-fetch pages",
   "tier": "fast",
   "interval_days": 14.0,
-  "last_checked": "2026-10-15",
-  "next_due": "2026-10-29",
+  "last_checked": "2026-10-30",
+  "next_due": "2026-11-15",
   "verify_at_use": false,
   "volatile_claims": [
     "Interactions API response steps: url_context_call, url_context_result (per-URL status), thought, model_output; page tokens in usage.total_tool_use_tokens (2026-10-15)",
@@ -44,12 +44,18 @@
       "m": null,
       "interval_after": 14,
       "note": "created; research from the everscout Stage 1 test and one subagent pass (5 searches, 18 fetches), 3 R- entries"
+    },
+    {
+      "date": "2026-10-30",
+      "m": 0.15,
+      "interval_after": 14.0,
+      "note": "changelog: nothing on url_context; GenerateContent store default, gemini-api CLI beta; cost: searches 1 · fetches 1 · tool calls 3"
     }
   ],
   "counts": {
     "learnings": 3,
     "changes": 1,
-    "research": 3,
+    "research": 4,
     "tests": 1
   },
   "consolidate_every": 25,
