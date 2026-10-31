@@ -14,6 +14,7 @@ x-goog-api-key: <key from the environment>
 - The response's `steps` hold a `url_context_call`, a `url_context_result` (each URL with a `status`), a `thought` and a `model_output` with the text. `usage.total_tool_use_tokens` is the fetched page.
 - URL context tries Google's index first, then a live fetch. Up to 20 URLs a request and 34 MB a URL; fetchwright sends one URL a request so each gets its own status.
 - Not readable: pages behind a login or paywall, YouTube, Google Docs and Sheets, video and audio, localhost and private networks. Readable: HTML, JSON, plain text, PDF, PNG, JPEG, BMP, WebP.
+- Cache each page result by URL plus a hash of the prompt, with an expiry (a day suits most pages; skip time-sensitive ones such as live threads or prices), so a same-day re-read costs no Gemini quota. `--out` or `--save-raw` gives the file to cache.
 
 ## Statuses
 

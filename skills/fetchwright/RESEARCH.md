@@ -69,3 +69,6 @@ Testing:
 - Sources: live run of `fetchwright.py read https://en.wikipedia.org/wiki/Reddit` with a word-for-word page instruction
 - The first instruction got a 1,864-character excerpt of a long article; asking for every paragraph drew HTTP 400 "Request blocked due to copyright/recitation content". The digest instruction read every section (2,839 characters from 7,479 page tokens).
 - Magnitude: 0.5 · applied: C-20261015-1
+
+### R-20261031-1 · 2026-10-31 · Book: exact result caching for metered calls
+Huyen, *AI Engineering* (ch. 10): exact result caching pays for slow or metered calls; key it on the full input and give it an expiry. Paraphrased in the book-learnings notes, not in this repository.

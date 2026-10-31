@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261031-1 · 2026-10-31 · cache page results by URL and prompt hash (0.2.1)
+- because: R-20261031-1 (book-learnings pass)
+- files: references/route.md (The request)
+- A same-day re-read of one page with one prompt should come from a cache with an expiry, not a new Gemini call.
+
 ### C-20261016-1 · 2026-10-16 · a 429 on one model's quota moves to the next model
 - because: L-004 (`free-tier-20-a-day-on-flash`); the owner agreed on 2026-10-16 that a quota 429 on one model may fall through to the next
 - files: scripts/fetchwright.py (classify, call_models, cmd_read), SKILL.md (Rules), references/route.md (Errors), ../fetchwright-setup/SKILL.md, ../../tests/test_fetchwright.py

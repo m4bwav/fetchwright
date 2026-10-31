@@ -2,7 +2,7 @@
 name: fetchwright
 description: "Read a public web page the agent's own fetch tools cannot reach (Reddit threads, pages that answer scripts with a 403, a block page or a JavaScript wall) through Gemini's URL context tool: Google reads the page from its index or a live fetch, and a standard-library CLI returns the title and text, or a thread's post and comments, as text or JSON. Needs a Gemini API key in GEMINI_API_KEY (fetchwright-setup sets one up). Use when WebFetch, curl or a plain HTTP request was refused or got a wall on a public page, or the user says 'read this reddit thread', 'get the comments from this thread', 'fetch this through gemini', 'webfetch can't open this page'. Also for 'refresh fetchwright' and 'is fetchwright stale'. Not for pages behind a login or a paywall, YouTube, Google Docs, private or localhost URLs, or web search (fetchwright never uses Google Search)."
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # fetchwright
