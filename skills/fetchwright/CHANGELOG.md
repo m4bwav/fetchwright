@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261102-1 · 2026-11-02 · point Discord to everscout's invited-bot reader
+- because: user request (2026-11-02): a legal way to read Discord
+- files: SKILL.md (when not to use it)
+- Discord is login-walled, so URL context cannot read it; the skill now names everscout's es_discord.py route. Unreleased.
+
 ### C-20261031-1 · 2026-10-31 · cache page results by URL and prompt hash (0.2.1)
 - because: R-20261031-1 (book-learnings pass)
 - files: references/route.md (The request)

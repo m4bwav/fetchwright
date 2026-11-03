@@ -19,7 +19,7 @@ Read [evergreen.json](evergreen.json). If `contradiction` is set or today is on 
 
 Use the agent's own fetch tool (WebFetch, curl, a feed) first. It is free and sends nothing to a third party. Reach for fetchwright when that was refused (403, a block or login wall on a public page, an empty JavaScript shell), or for a Reddit thread, which refuses plain clients.
 
-Never use fetchwright for a page behind a login, a paywall, a private network or localhost, YouTube or Google Workspace files: URL context cannot read them. It reads one URL at a time and never searches; find URLs some other way.
+Never use fetchwright for a page behind a login, a paywall, a private network or localhost, YouTube or Google Workspace files: URL context cannot read them. Discord channels are behind a login too: read them through the user's own invited bot with everscout's `scripts/es_discord.py` (everscout `kb/discord.md`), never through fetchwright or a user token. It reads one URL at a time and never searches; find URLs some other way.
 
 ## Step 2: the key
 
