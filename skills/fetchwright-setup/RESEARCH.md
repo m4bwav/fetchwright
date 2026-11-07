@@ -23,7 +23,7 @@ Topic: setting up a Gemini API key for a command-line tool: AI Studio keys and t
 Four tracks; every refresh runs at least one query on each, scoped to the time since the last refresh.
 
 Subject:
-- Re-fetch ai.google.dev/gemini-api/docs/api-key, /rate-limits, /billing, /pricing, /api-errors, /models, /deprecations and /gemini-api/terms; compare their "Last updated" dates.
+- Pricing and rate-limits now redirect to aistudio.google.com/docs/pricing and /rate-limits (2026-11-06). Re-fetch ai.google.dev/gemini-api/docs/api-key, /rate-limits, /billing, /pricing, /api-errors, /models, /deprecations and /gemini-api/terms; compare their "Last updated" dates.
 
 Tooling:
 - How other CLIs and MCP servers that wrap Gemini store and check keys (`GEMINI_API_KEY` setup guides, current year).
