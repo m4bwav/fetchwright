@@ -14,3 +14,6 @@ everscout's first live run hit the free tier's 20-a-day limit on gemini-3.8-flas
 ## [2026-10-16] release | fetchwright 0.2.0: the quota fall-through (PR #2), every version field bumped, README budget table refreshed (all green); released on the owner's go-ahead
 ## [2026-10-16] update | wiki updated for 0.2.0 (Versions page, the 429 quota fall-through on Commands, How pages are read, Recipes and FAQ, budget output, footer); installed plugin updated to 0.2.0
 ## [2026-10-15] index | rebuilt (4 entries)
+
+## [2026-11-11] docs | Works with section
+README gained a Works with section (everscout, tokenwright, madnesswright); the wiki gained a Works-with page linked from the sidebar and Home. Each entry describes a handoff found in the skill files on one side or the other.

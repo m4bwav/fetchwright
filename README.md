@@ -60,6 +60,14 @@ The [wiki](https://github.com/m4bwav/fetchwright/wiki) has every command with it
 
 Other agents that read Agent Skills (`SKILL.md`): link or copy the two folders under `skills/` into the agent's skills folder. The CLI alone needs only Python and a key: `python skills/fetchwright/scripts/fetchwright.py --help`. The `fetchwright-setup` skill walks through getting the key.
 
+## Works with
+
+- **[everscout](https://github.com/m4bwav/everscout)**: everscout beats read hard-to-fetch sites through fetchwright. For Discord, which fetchwright cannot read, fetchwright sends you to everscout's invited-bot reader.
+- **[tokenwright](https://github.com/m4bwav/tokenwright)**: tokenwright's refresh uses fetchwright for Reddit, where web search finds nothing.
+- **[madnesswright](https://github.com/m4bwav/madnesswright)**: madnesswright uses fetchwright for Steam pages, which return 429 to fast fetches.
+
+The wiki's [Works with](https://github.com/m4bwav/fetchwright/wiki/Works-with) page describes each pairing in more detail.
+
 ## Tests
 
 - `python tests/test_fetchwright.py`: 37 offline tests on responses built in the shape the API returns, with invented text. No network and no key.
