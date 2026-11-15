@@ -17,3 +17,6 @@ everscout's first live run hit the free tier's 20-a-day limit on gemini-3.8-flas
 
 ## [2026-11-11] docs | Works with section
 README gained a Works with section (everscout, tokenwright, madnesswright); the wiki gained a Works-with page linked from the sidebar and Home. Each entry describes a handoff found in the skill files on one side or the other.
+
+## [2026-11-15] fix | --json under --max-chars (0.2.2)
+`--json` output was cut as a string at `--max-chars`, giving broken JSON. `fit_json` now shortens text, body and comment text inside the object and flags `"truncated": true` with `chars_before_truncation`. Test `test_json_max_chars_keeps_valid_json`; 40 tests pass. Released 0.2.2.

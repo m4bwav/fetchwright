@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261115-1 · 2026-11-15 · --json output stays valid under --max-chars (0.2.2)
+- because: user request (2026-11-15): --json cut at --max-chars printed broken JSON
+- files: scripts/fetchwright.py (emit, fit_json); tests/test_fetchwright.py
+- With --json, the page text fields (text, body, comment text) are shortened until the object fits, and each shortened result carries "truncated": true and "chars_before_truncation". The serialized string is never cut. VERSION in the script was still 0.2.0 and now matches the plugin.
+
 ### C-20261102-1 · 2026-11-02 · point Discord to everscout's invited-bot reader
 - because: user request (2026-11-02): a legal way to read Discord
 - files: SKILL.md (when not to use it)

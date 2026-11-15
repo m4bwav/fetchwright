@@ -2,6 +2,11 @@
 
 Plugin versions, newest first. Skill-level changes are in each skill's `CHANGELOG.md`; the session log is `ai-docs/log.md`.
 
+## 0.2.2 · 2026-11-15
+
+- `--json` with `--max-chars` no longer cuts the serialized JSON. The page text fields are shortened inside the object until it fits, and each shortened result carries `"truncated": true` and `"chars_before_truncation"`, so the output always parses. 40 offline tests.
+- SKILL.md names everscout's invited-bot reader for Discord.
+
 ## 0.2.1 · 2026-10-31
 
 - route.md: cache each page result by URL plus prompt hash with an expiry, so a same-day re-read costs no quota (guidance; the CLI is unchanged).

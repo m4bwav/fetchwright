@@ -26,7 +26,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-VERSION = "0.2.0"
+VERSION = "0.2.2"
 API_BASE = "https://generativelanguage.googleapis.com/v1beta"
 DEFAULT_MODELS = ("gemini-3.8-flash", "gemini-3.5-flash-lite")
 KEY_VARS = ("GEMINI_API_KEY", "GOOGLE_API_KEY")
@@ -429,11 +429,47 @@ def cmd_read(args):
     return code
 
 
+def fit_json(payload, max_chars):
+    """Shorten the page text fields (text, body, comment text) until the JSON fits max_chars, so the
+    output always parses. Each result that lost text gets "truncated": true and its original length."""
+    if not max_chars:
+        return payload
+    payload = json.loads(json.dumps(payload))
+    results = payload if isinstance(payload, list) else [payload]
+
+    def fields():
+        for r in results:
+            for key in ("text", "body", "unparsed"):
+                if isinstance(r.get(key), str):
+                    yield r, r, key
+            for c in r.get("comments") or []:
+                if isinstance(c, dict) and isinstance(c.get("text"), str):
+                    yield r, c, "text"
+
+    for _ in range(1000):
+        size = len(json.dumps(payload, indent=1, ensure_ascii=False)) + 1
+        if size <= max_chars:
+            break
+        cand = [f for f in fields() if f[1][f[2]]]
+        if not cand:
+            break
+        r, holder, key = max(cand, key=lambda f: len(f[1][f[2]]))
+        if not r.get("truncated"):
+            r["truncated"] = True
+            r["chars_before_truncation"] = sum(len(h[k]) for rr, h, k in fields() if rr is r)
+            continue
+        value = holder[key]
+        holder[key] = value[:max(0, len(value) - (size - max_chars) - 8)]
+    return payload
+
+
 def emit(results, args):
     if args.json:
         payload = results[0] if len(results) == 1 else results
+        if not args.out:
+            payload = fit_json(payload, args.max_chars)
         text = json.dumps(payload, indent=1, ensure_ascii=False) + "\n"
-        write_out(text if args.out else clip(text, args.max_chars), args.out)
+        write_out(text, args.out)
     else:
         text = "\n".join(render_text(r) for r in results)
         write_out(text if args.out else clip(text, args.max_chars), args.out)
