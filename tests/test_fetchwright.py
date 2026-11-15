@@ -342,6 +342,25 @@ class OutputTests(unittest.TestCase):
         self.assertEqual([m["answers"] for m in report["models"]], [True, False])
         self.assertNotIn("tools", post.bodies[0])
 
+    def test_json_max_chars_keeps_valid_json(self):
+        page = {"read_ok": True, "why_not": "", "title": "Invented page", "text": "word " * 5000}
+        post = FakePost((200, interaction(page, retrieval=(("success", PAGE),))))
+        code, out, _ = run_cli(["read", PAGE, "--json", "--max-chars", "3000"], post)
+        self.assertEqual(code, 0)
+        self.assertLessEqual(len(out), 3000)
+        data = json.loads(out)
+        self.assertIs(data["truncated"], True)
+        self.assertEqual(data["chars_before_truncation"], len(("word " * 5000).strip()))
+        self.assertTrue(data["text"].startswith("word word"))
+        thread = dict(GOOD_THREAD, body="long body " * 2000)
+        post = FakePost((200, interaction(thread)))
+        code, out, _ = run_cli(["read", THREAD, "--json", "--max-chars", "2500"], post)
+        self.assertLessEqual(len(out), 2500)
+        self.assertIs(json.loads(out)["truncated"], True)
+        post = FakePost((200, interaction(GOOD_THREAD)))
+        _, out, _ = run_cli(["read", THREAD, "--json"], post)
+        self.assertNotIn("truncated", json.loads(out))
+
     def test_check_no_call_sends_nothing(self):
         post = FakePost()
         code, out, _ = run_cli(["check", "--no-call"], post)
