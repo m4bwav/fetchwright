@@ -81,6 +81,17 @@ class Route(unittest.TestCase):
             fetch.assert_not_called()
 
 
+class RateLimit(unittest.TestCase):
+    def test_429_stops_with_advice(self):
+        done = unittest.mock.Mock(returncode=1, stderr="ERROR: Unable to download video subtitles: HTTP Error 429: Too Many Requests")
+        with unittest.mock.patch.object(yt.subprocess, "run", return_value=done) as run:
+            with self.assertRaises(SystemExit) as cm:
+                yt.fetch(VID, "en")
+        self.assertEqual(run.call_count, 1)
+        self.assertIn("429", str(cm.exception))
+        self.assertIn("clip", str(cm.exception))
+
+
 if __name__ == "__main__":
     import unittest.mock  # noqa: F401
     unittest.main()

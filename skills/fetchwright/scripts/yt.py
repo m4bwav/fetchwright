@@ -83,6 +83,9 @@ def fetch(url, lang):
                              os.path.join(tmp, "v.%(ext)s"), f"https://www.youtube.com/watch?v={vid}"]
         r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
         info_path = os.path.join(tmp, "v.info.json")
+        if "HTTP Error 429" in r.stderr:  # YouTube rate limit: stop, never retry in a loop
+            sys.exit("yt.py: YouTube answered 429 (rate limit). Stop; try again in an hour, "
+                     "or ask about one span with `yt.py clip` (Gemini reads the video itself).")
         if not os.path.exists(info_path):
             sys.exit(f"yt.py: yt-dlp failed ({r.returncode}): {r.stderr.strip()[-400:]}")
         with open(info_path, encoding="utf-8") as f:
