@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261117-2 · 2026-11-17 · clip stops cleanly on a Gemini timeout
+- because: an 8-minute clip span got no answer in 600 s and yt.py printed a bare traceback (youtube-mining everscout test)
+- files: scripts/yt.py (clip); tests/test_yt.py; SKILL.md (YouTube videos)
+- A timeout now stops with advice to ask about a span of 2 minutes or less, and the skill says so.
+
 ### C-20261117-1 · 2026-11-17 · YouTube videos through yt.py (transcript, chapters, clip)
 - because: user request (YouTube mining chain); viability tests in plugin-backlog youtube-mining tests.md (research, harvest, clip all KEEP)
 - files: SKILL.md (description, Step 1, YouTube videos); scripts/yt.py; tests/test_yt.py; evals trigger-5

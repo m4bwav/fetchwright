@@ -154,6 +154,8 @@ def clip(url, span, question):
             data = json.load(r)
     except urllib.error.HTTPError as e:  # 429, 503 and the rest: report and stop, never retry in a loop
         sys.exit(f"yt.py: Gemini answered {e.code} {e.reason}; stopped")
+    except TimeoutError:  # an 8-minute span went past 600 s on 2026-11-17; a 37 s span took 210 s
+        sys.exit("yt.py: Gemini gave no answer in 600 s; stopped. Ask about a shorter span (2 minutes or less).")
     text = "".join(p.get("text", "") for p in data["candidates"][0]["content"]["parts"])
     usage = data.get("usageMetadata", {})
     print(text.strip())

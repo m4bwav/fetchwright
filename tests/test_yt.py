@@ -91,6 +91,15 @@ class RateLimit(unittest.TestCase):
         self.assertIn("429", str(cm.exception))
         self.assertIn("clip", str(cm.exception))
 
+    def test_clip_timeout_stops_with_advice(self):
+        env = unittest.mock.patch.dict(yt.os.environ, {"GEMINI_API_KEY": "test"})
+        slow = unittest.mock.patch.object(yt.urllib.request, "urlopen", side_effect=TimeoutError)
+        with env, slow as op:
+            with self.assertRaises(SystemExit) as cm:
+                yt.clip(f"https://www.youtube.com/watch?v={VID}", "0-480", "q")
+        self.assertEqual(op.call_count, 1)
+        self.assertIn("shorter span", str(cm.exception))
+
 
 if __name__ == "__main__":
     import unittest.mock  # noqa: F401
