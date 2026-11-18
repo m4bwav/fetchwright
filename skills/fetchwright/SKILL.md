@@ -61,7 +61,7 @@ FW read URL1 URL2 --gap 6           # several URLs, one request each, 5 s apart 
 
 ## YouTube videos (scripts/yt.py)
 
-- `yt.py read URL --route ytdlp` (or `FETCHWRIGHT_YT_ROUTE=ytdlp`): yt-dlp captions, chapters and description links as markdown, a `&t=` link on every paragraph. About 3 s and 4-6k tokens for a 15-minute video. Opt-in until the owner rules on yt-dlp.
+- `yt.py read URL --route ytdlp` (or `FETCHWRIGHT_YT_ROUTE=ytdlp`): yt-dlp captions, chapters and description links as markdown, a `&t=` link on every paragraph. About 3 s and 4-6k tokens for a 15-minute video. Opt-in by design: YouTube's terms ban automated downloads, so each user decides; set `FETCHWRIGHT_YT_ROUTE=ytdlp` to make it your default.
 - `yt.py clip URL 17:03-17:40 "question"`: Gemini watches that span and reads the screen (formulas, settings dialogs, node graphs). 2-4 minutes; pick the span from the chapters first. Keep spans to 2 minutes or less: an 8-minute span got no answer in 600 s.
 - Measured 2026-11-17: docs beat videos on exact numbers and definitions (auto-captions round and drop decimal points); videos beat docs on recipes and gotchas. Cite the `&t=` link and check numbers against a written source. Check a tutorial's date against the tool's current major version before following it.
 - A 429 from YouTube stops the run; wait an hour or use `clip`. Never retry in a loop.

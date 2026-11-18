@@ -2,6 +2,11 @@
 
 Plugin versions, newest first. Skill-level changes are in each skill's `CHANGELOG.md`; the session log is `ai-docs/log.md`.
 
+## 0.3.0 · 2026-11-17
+
+- New `yt.py` for YouTube videos: `read` gives captions, chapters and description links as markdown with a `&t=` link on every paragraph (yt-dlp route, opt-in with `--route ytdlp` or `FETCHWRIGHT_YT_ROUTE=ytdlp`, because YouTube's terms ban automated downloads); `clip` asks Gemini about a span of up to two minutes and reads the screen as well as speech. Stops with advice on a 429 or a timeout, never retries.
+- SKILL.md no longer says "not for YouTube".
+
 ## 0.2.2 · 2026-11-15
 
 - `--json` with `--max-chars` no longer cuts the serialized JSON. The page text fields are shortened inside the object until it fits, and each shortened result carries `"truncated": true` and `"chars_before_truncation"`, so the output always parses. 40 offline tests.
