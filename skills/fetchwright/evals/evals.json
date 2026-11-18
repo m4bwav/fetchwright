@@ -52,6 +52,17 @@
       "baseline": "without the skill the agent tries WebFetch, gets blocked, and cannot read the thread",
       "needs": "GEMINI_API_KEY in the eval environment",
       "runs": 1
+    },
+    {
+      "id": "trigger-5",
+      "kind": "trigger",
+      "prompt": "turn this blender tutorial into steps I can script: https://www.youtube.com/watch?v=g3DFxH0N7U0",
+      "expectations": [
+        "the fetchwright skill is invoked"
+      ],
+      "evidence": "tool_used Skill fetchwright",
+      "baseline": "without the skill the agent tries WebFetch on the YouTube page and gets no transcript",
+      "runs": 3
     }
   ]
 }

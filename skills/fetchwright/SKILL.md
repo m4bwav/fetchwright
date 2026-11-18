@@ -1,6 +1,6 @@
 ---
 name: fetchwright
-description: "Read a public web page the agent's own fetch tools cannot reach (Reddit threads, pages that answer scripts with a 403, a block page or a JavaScript wall) through Gemini's URL context tool: Google reads the page from its index or a live fetch, and a standard-library CLI returns the title and text, or a thread's post and comments, as text or JSON. Needs a Gemini API key in GEMINI_API_KEY (fetchwright-setup sets one up). Use when WebFetch, curl or a plain HTTP request was refused or got a wall on a public page, or the user says 'read this reddit thread', 'get the comments from this thread', 'fetch this through gemini', 'webfetch can't open this page'. Also for 'refresh fetchwright' and 'is fetchwright stale'. Not for pages behind a login or a paywall, YouTube, Google Docs, private or localhost URLs, or web search (fetchwright never uses Google Search)."
+description: "Read a public web page the agent's own fetch tools cannot reach (Reddit threads, pages that answer scripts with a 403, a block page or a JavaScript wall) through Gemini's URL context tool: Google reads the page from its index or a live fetch, and a standard-library CLI returns the title and text, or a thread's post and comments, as text or JSON. Needs a Gemini API key in GEMINI_API_KEY (fetchwright-setup sets one up). Use when WebFetch, curl or a plain HTTP request was refused or got a wall on a public page, or the user says 'read this reddit thread', 'get the comments from this thread', 'fetch this through gemini', 'webfetch can't open this page', or a YouTube video's transcript with timestamp links ('turn this tutorial into steps'). Also for 'refresh fetchwright' and 'is fetchwright stale'. Not for pages behind a login or a paywall, Google Docs, private or localhost URLs, or web search."
 metadata:
   version: "0.2.2"
 ---
@@ -19,7 +19,7 @@ Read [evergreen.json](evergreen.json). If `contradiction` is set or today is on 
 
 Use the agent's own fetch tool (WebFetch, curl, a feed) first. It is free and sends nothing to a third party. Reach for fetchwright when that was refused (403, a block or login wall on a public page, an empty JavaScript shell), or for a Reddit thread, which refuses plain clients.
 
-Never use fetchwright for a page behind a login, a paywall, a private network or localhost, YouTube or Google Workspace files: URL context cannot read them. Discord channels are behind a login too: read them through the user's own invited bot with everscout's `scripts/es_discord.py` (everscout `kb/discord.md`), never through fetchwright or a user token. It reads one URL at a time and never searches; find URLs some other way.
+Never use fetchwright for a page behind a login, a paywall, a private network or localhost or Google Workspace files: URL context cannot read them. A YouTube video is not a page: use `scripts/yt.py` (below). Discord channels are behind a login too: read them through the user's own invited bot with everscout's `scripts/es_discord.py` (everscout `kb/discord.md`), never through fetchwright or a user token. It reads one URL at a time and never searches; find URLs some other way.
 
 ## Step 2: the key
 
@@ -58,6 +58,13 @@ FW read URL1 URL2 --gap 6           # several URLs, one request each, 5 s apart 
 ## Exit codes
 
 0 all read · 1 a page was not read · 2 bad arguments · 3 rate limited, stopped · 4 no key, key refused or payment needed · 5 every model unavailable.
+
+## YouTube videos (scripts/yt.py)
+
+- `yt.py read URL --route ytdlp` (or `FETCHWRIGHT_YT_ROUTE=ytdlp`): yt-dlp captions, chapters and description links as markdown, a `&t=` link on every paragraph. About 3 s and 4-6k tokens for a 15-minute video. Opt-in until the owner rules on yt-dlp.
+- `yt.py clip URL 17:03-17:40 "question"`: Gemini watches that span and reads the screen (formulas, settings dialogs, node graphs). 2-4 minutes; pick the span from the chapters first.
+- Measured 2026-11-17: docs beat videos on exact numbers and definitions (auto-captions round and drop decimal points); videos beat docs on recipes and gotchas. Cite the `&t=` link and check numbers against a written source. Check a tutorial's date against the tool's current major version before following it.
+- A 429 from YouTube stops the run; wait an hour or use `clip`. Never retry in a loop.
 
 ## Maintenance
 

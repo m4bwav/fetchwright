@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261117-1 · 2026-11-17 · YouTube videos through yt.py (transcript, chapters, clip)
+- because: user request (YouTube mining chain); viability tests in plugin-backlog youtube-mining tests.md (research, harvest, clip all KEEP)
+- files: SKILL.md (description, Step 1, YouTube videos); scripts/yt.py; tests/test_yt.py; evals trigger-5
+- The description no longer rules YouTube out. yt.py reads captions, chapters and links with `&t=` citations (yt-dlp route opt-in until the owner rules), and `clip` asks Gemini about one span's screen. A 429 stops the run with advice.
+
 ### C-20261115-1 · 2026-11-15 · --json output stays valid under --max-chars (0.2.2)
 - because: user request (2026-11-15): --json cut at --max-chars printed broken JSON
 - files: scripts/fetchwright.py (emit, fit_json); tests/test_fetchwright.py
