@@ -20,3 +20,4 @@ README gained a Works with section (everscout, tokenwright, madnesswright); the 
 
 ## [2026-11-15] fix | --json under --max-chars (0.2.2)
 `--json` output was cut as a string at `--max-chars`, giving broken JSON. `fit_json` now shortens text, body and comment text inside the object and flags `"truncated": true` with `chars_before_truncation`. Test `test_json_max_chars_keeps_valid_json`; 40 tests pass. Released 0.2.2.
+- 2026-11-17: yt.py clip timed out on an 8-minute span (600 s); now exits with advice. Captions 429 on every video today.
