@@ -45,3 +45,10 @@ Write an entry the moment a real signal happens: a user correction, the same err
 - Evidence: everscout `ai-docs/research/2026-10-15-fetchwright-thread-reader-live.md`
 - Scope: skill
 - Status: active · helpful 0 · harmful 0 · last_confirmed 2026-10-16
+
+### L-006 · 2026-11-21 · `old-reddit-retrieval-error`: old.reddit.com failed where www.reddit.com read
+- Trigger: `read` on an old.reddit.com thread (r/aivideomaking 1y1zcbh) returned "retrieval: error ... NOT READ"; the same path on www.reddit.com read at once with all comments.
+- Rule: give Gemini the www.reddit.com form of a Reddit URL (rewrite old./np./m. hosts) before calling a thread unreadable; worth doing inside fetchwright.py.
+- Also: there is no `thread` subcommand; `read` picks thread mode itself.
+- Scope: skill
+- Status: active · helpful 0 · harmful 0 · last_confirmed 2026-11-21
